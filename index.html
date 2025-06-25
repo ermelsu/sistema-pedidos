@@ -1,0 +1,139 @@
+<!-- Sistema de Pedidos - Página completa, linda e funcional -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Pedidos</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+      color: #212529;
+    }
+    header {
+      background-color: #1e90ff;
+      padding: 1.5rem;
+      text-align: center;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 2rem;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      flex: 1 1 300px;
+    }
+    .card h2 {
+      margin-top: 0;
+      color: #1e90ff;
+      font-size: 1.4rem;
+      border-bottom: 2px solid #1e90ff;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #1e90ff;
+      color: white;
+      font-weight: bold;
+      border: none;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #187bcd;
+    }
+    .status {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.4rem;
+      color: white;
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+    }
+    .pendente { background-color: orange; }
+    .aprovado { background-color: green; }
+    .em-compra { background-color: #1e90ff; }
+    .entregue { background-color: gray; }
+  </style>
+</head>
+<body>
+  <header>
+    Sistema de Solicitação de Materiais
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>Formulário de Pedido</h2>
+      <form>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" placeholder="Digite seu nome" required>
+
+        <label for="setor">Setor:</label>
+        <select id="setor" required>
+          <option value="">Selecione...</option>
+          <option value="Almoxarifado">Almoxarifado</option>
+          <option value="Limpeza">Limpeza</option>
+          <option value="Financeiro">Financeiro</option>
+          <option value="TI">TI</option>
+        </select>
+
+        <label for="data">Data de uso:</label>
+        <input type="date" id="data" required>
+
+        <label for="itens">Itens solicitados:</label>
+        <textarea id="itens" rows="4" placeholder="Ex: 2x Papel A4, 1x Caneta azul" required></textarea>
+
+        <button type="submit">Enviar Pedido</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Admin - Pedidos Recebidos</h2>
+      <p><strong>Nome:</strong> João</p>
+      <p><strong>Setor:</strong> Financeiro</p>
+      <p><strong>Data:</strong> 28/06/2025</p>
+      <p><strong>Itens:</strong><br>2x Caneta Azul<br>1x Pasta<br>5x Clips</p>
+      <p><strong>Status:</strong> <span class="status pendente">Pendente</span></p>
+
+      <hr>
+
+      <p><strong>Nome:</strong> Maria</p>
+      <p><strong>Setor:</strong> TI</p>
+      <p><strong>Data:</strong> 30/06/2025</p>
+      <p><strong>Itens:</strong><br>3x Pen Drive<br>1x Mouse</p>
+      <p><strong>Status:</strong> <span class="status em-compra">Em Compra</span></p>
+    </div>
+  </div>
+</body>
+</html>
