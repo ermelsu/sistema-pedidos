@@ -13,6 +13,8 @@
 
   <main class="login-container">
     <div class="login-card">
+      <button onclick="window.location.href='index.html'">↩ Voltar para o Login</button>
+
       <label for="nome">Nome:</label>
       <input type="text" id="nome" placeholder="Seu nome" required>
 
@@ -23,7 +25,7 @@
       <input type="date" id="data" required>
 
       <label>Selecione os materiais desejados:</label>
-      <div id="produtos"></div>
+      <div id="produtos" style="margin-top: 1rem;"></div>
 
       <button onclick="enviarPedido()">Enviar Pedido</button>
     </div>
@@ -38,11 +40,15 @@
         .then(json => {
           const lista = JSON.parse(json);
           const container = document.getElementById('produtos');
+          container.innerHTML = '';
           lista.slice(1).forEach(item => {
-            const label = document.createElement('label');
-            label.innerHTML = `<input type='checkbox' value='${item[0]}'> 🍀 ${item[0]}`;
-            container.appendChild(label);
+            const div = document.createElement('div');
+            div.innerHTML = `<label><input type='checkbox' value='${item[0]}'> 🍀 ${item[0]}</label>`;
+            container.appendChild(div);
           });
+        })
+        .catch(() => {
+          document.getElementById('produtos').innerHTML = '<p style="color:red">Erro ao carregar produtos.</p>';
         });
     }
 
