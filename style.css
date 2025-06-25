@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -9,7 +8,6 @@ body {
   justify-content: center;
   color: #333;
 }
-
 .container {
   width: 100%;
   max-width: 600px;
@@ -18,14 +16,12 @@ body {
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
-
 .btn-sair {
   padding: 0.5rem 1rem;
   background: #f44336;
@@ -34,7 +30,6 @@ body {
   border-radius: 4px;
   font-weight: bold;
 }
-
 input, select, button {
   width: 100%;
   padding: 0.7rem;
@@ -42,7 +37,6 @@ input, select, button {
   border-radius: 6px;
   border: 1px solid #ccc;
 }
-
 details summary {
   cursor: pointer;
   padding: 0.6rem;
@@ -51,15 +45,34 @@ details summary {
   border-radius: 6px;
   font-weight: bold;
 }
-
 .details-content {
   padding: 0.8rem;
   background: #f9f9f9;
   border-radius: 4px;
 }
-
 .details-content label {
   display: flex;
   justify-content: space-between;
   margin: 0.4rem 0;
 }
+button {
+  background: #1e90ff;
+  color: white;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background: #0066cc;
+}
+#prioridade-btns {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 0;
+}
+#prioridade-btns button {
+  flex: 1;
+  margin: 0 0.3rem;
+}
+.baixa { background: #4CAF50; }
+.media { background: #FFEB3B; color: black; }
+.alta { background: #F44336; }
