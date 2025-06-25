@@ -4,24 +4,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Formulário de Pedido</title>
+  <title>Pedido de Material</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body onload="carregarProdutos()">
-  <header>
-    <h1>Formulário de Pedido</h1>
-    <a href="index.html" class="btn-voltar">↩ Sair</a>
-  </header>
-  <main>
-    <form id="pedido-form">
-      <input type="text" name="nome" placeholder="Seu nome" required />
-      <input type="text" name="setor" placeholder="Setor" required />
-      <input type="date" name="data" required />
-      <p>Selecione os materiais desejados:</p>
-      <div id="produtos"></div>
-      <button type="submit">Enviar Pedido</button>
-    </form>
-  </main>
+<body onload="carregarProdutos(); carregarUltimoPedido();">
+  <div class="container">
+    <header class="header">
+      <h1>Pedido de Material</h1>
+      <a href="index.html" class="btn-sair">Sair</a>
+    </header>
+    <main>
+      <div id="ultimo-pedido" style="margin-bottom: 2rem;"></div>
+      <form id="pedido-form">
+        <input type="text" id="nome" placeholder="Seu nome" required />
+        <input type="text" id="setor" placeholder="Setor" required />
+        <input type="date" id="dataUso" required />
+        <div id="produtos"></div>
+        <button type="submit">Enviar Pedido</button>
+      </form>
+    </main>
+  </div>
   <script src="auth.js"></script>
 </body>
 </html>
