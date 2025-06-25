@@ -92,7 +92,9 @@ A API (Apps Script implantada) deve ter essas ações:
 
 ## 📞 Suporte
 
-Para dúvidas, melhorias, relatórios ou feedback, entre em contato com a equipe de TI da CECAPE.
+Para dúvidas, melhorias, relatórios ou feedback, entre em contato com:
+ @Emerson.sbv
+ Emerson.sbv@icloud.com
 
 ---
 
