@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin - Sistema de Pedidos</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Painel do Administrador</h1>
-  </header>
-
-  <main class="admin-panel">
-    <div class="admin-content">
+  <div class="container">
+    <header class="header">
+      <h1>Painel do Administrador</h1>
+      <a href="index.html" class="btn-sair">Sair</a>
+    </header>
+    <main>
       <h2>Pedidos Recebidos</h2>
       <table id="tabela-pedidos">
         <thead>
@@ -27,12 +27,11 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Linhas serão inseridas dinamicamente aqui -->
+          <!-- Conteúdo dinâmico -->
         </tbody>
       </table>
-    </div>
-  </main>
-
+    </main>
+  </div>
   <script src="admin.js"></script>
 </body>
 </html>

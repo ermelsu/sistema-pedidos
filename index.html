@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,20 +8,22 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Sistema de Pedidos</h1>
-  </header>
-  <main class="login-container">
-    <form id="login-form" onsubmit="loginUser(); return false;">
-      <h2>Login de Usuário</h2>
-      <input type="email" id="email" placeholder="Digite seu e-mail institucional" required />
-      <button type="submit">Entrar</button>
-      <div class="admin-note">
-        <h3>Área do Administrador</h3>
-        <p>Apenas e-mails autorizados têm acesso.</p>
-      </div>
-    </form>
-  </main>
+  <div class="container">
+    <header class="header">
+      <h1>Sistema de Pedidos</h1>
+    </header>
+    <main>
+      <form id="login-form" onsubmit="loginUser(); return false;">
+        <h2>Login de Usuário</h2>
+        <input type="email" id="email" placeholder="Digite seu e-mail institucional" required style="width: 100%; padding: 0.8rem; margin-bottom: 1rem;" />
+        <button type="submit" style="padding: 0.8rem 1.5rem;">Entrar</button>
+        <div class="admin-note">
+          <h3>Área do Administrador</h3>
+          <p>Apenas e-mails autorizados têm acesso.</p>
+        </div>
+      </form>
+    </main>
+  </div>
   <script src="auth.js"></script>
 </body>
 </html>
