@@ -23,3 +23,23 @@ function carregarProdutos() {
       if (container) container.innerHTML = '<p style="color:red">Erro ao carregar produtos.</p>';
     });
 }
+
+function loginUser() {
+  const email = document.getElementById("email").value.trim();
+  const dominio = "@faculdadececape.com";
+  const admins = ["admin@faculdadececape.com", "silva@faculdadececape.com"];
+
+  if (!email.endsWith(dominio)) {
+    alert("Use um e-mail institucional.");
+    return;
+  }
+
+  if (admins.includes(email.toLowerCase())) {
+    localStorage.setItem("usuario", email);
+    window.location.href = "admin.html";
+  } else {
+    localStorage.setItem("usuario", email);
+    window.location.href = "user.html";
+  }
+}
+
