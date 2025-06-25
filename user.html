@@ -22,8 +22,8 @@
       <label for="data">Data de uso:</label>
       <input type="date" id="data" required>
 
-      <label for="itens">Itens solicitados:</label>
-      <textarea id="itens" placeholder="Ex: 2x Papel A4, 1x Caneta azul" rows="4" required></textarea>
+      <label>Selecione os materiais desejados:</label>
+      <div id="produtos"></div>
 
       <button onclick="enviarPedido()">Enviar Pedido</button>
     </div>
@@ -31,14 +31,30 @@
 
   <script>
     const API_URL = "https://script.google.com/a/macros/faculdadececape.edu.br/s/AKfycbzgQyknBpnzz7X-sdVpg2nc6_b_zJRouENAJx-XgKR2VmLnzdy_cO_VTfPXsSJKE2XtQg/exec";
+
+    function carregarProdutos() {
+      fetch(`${API_URL}?action=getProdutos`, { method: 'POST' })
+        .then(res => res.text())
+        .then(json => {
+          const lista = JSON.parse(json);
+          const container = document.getElementById('produtos');
+          lista.slice(1).forEach(item => {
+            const label = document.createElement('label');
+            label.innerHTML = `<input type='checkbox' value='${item[0]}'> 🍀 ${item[0]}`;
+            container.appendChild(label);
+          });
+        });
+    }
+
     function enviarPedido() {
       const nome = document.getElementById('nome').value;
       const setor = document.getElementById('setor').value;
       const data = document.getElementById('data').value;
-      const itens = document.getElementById('itens').value;
+      const selecionados = [...document.querySelectorAll('#produtos input:checked')].map(e => e.value);
+      const itens = selecionados.join(', ');
 
-      if (!nome || !setor || !data || !itens) {
-        alert('Preencha todos os campos');
+      if (!nome || !setor || !data || selecionados.length === 0) {
+        alert('Preencha todos os campos e selecione ao menos um item.');
         return;
       }
 
@@ -51,13 +67,14 @@
         .then(res => res.text())
         .then(r => {
           if (r === 'sucesso') {
-            alert('Pedido enviado com sucesso!');
-            window.location.reload();
+            window.location.href = `status.html?nome=${encodeURIComponent(nome)}`;
           } else {
             alert('Erro ao enviar pedido.');
           }
         });
     }
+
+    carregarProdutos();
   </script>
 </body>
 </html>
