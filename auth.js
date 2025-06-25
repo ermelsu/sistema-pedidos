@@ -27,9 +27,7 @@ function carregarProdutos() {
       container.innerHTML = "";
       lista.forEach(item => {
         const div = document.createElement("div");
-        div.innerHTML = `
-          <label><span>${item[0]}</span><input type="checkbox" name="produto" value="${item[0]}"></label>
-        `;
+        div.innerHTML = `<label><span>${item[0]}</span><input type="checkbox" name="produto" value="${item[0]}"></label>`;
         container.appendChild(div);
       });
     });
@@ -43,7 +41,7 @@ function carregarUltimoPedido() {
       const ultimos = pedidos.reverse().find(p => p[0] === email);
       const container = document.getElementById("ultimo-pedido");
       if (ultimos) {
-        container.innerHTML = `<strong>Último pedido:</strong><br>Itens: ${ultimos[3]}<br>Status: ${ultimos[4]}`;
+        container.innerHTML = `<strong>Último pedido:</strong><br>Itens: ${ultimos[3]}<br>Status: ${ultimos[4]}<br>Prioridade: ${ultimos[5] || 'N/A'}`;
       }
     });
 }
@@ -52,6 +50,7 @@ function enviarPedido() {
   const nome = document.getElementById("nome").value;
   const setor = document.getElementById("setor").value;
   const dataUso = new Date().toISOString();
+  const prioridade = document.getElementById("prioridade").value;
   const itensSelecionados = Array.from(document.querySelectorAll("input[name='produto']:checked")).map(el => el.value).join(", ");
 
   fetch(API_URL, {
@@ -61,6 +60,7 @@ function enviarPedido() {
       nome,
       setor,
       dataUso,
+      prioridade,
       produtos: itensSelecionados
     })
   }).then(res => res.text())
