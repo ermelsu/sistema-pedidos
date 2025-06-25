@@ -1,1 +1,38 @@
-<!-- Formulário com prioridade e dropdown alinhado -->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pedido de Material</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body onload="carregarProdutos(); carregarUltimoPedido();">
+  <div class="container">
+    <header class="header">
+      <h2>Pedido de Material</h2>
+      <a href="index.html" class="btn-sair">Sair</a>
+    </header>
+    <main>
+      <div id="ultimo-pedido" style="margin-bottom: 1rem;"></div>
+      <form id="pedido-form" onsubmit="enviarPedido(); return false;">
+        <input type="text" id="nome" placeholder="Seu nome" required />
+        <input type="text" id="setor" placeholder="Setor" required />
+        <input type="date" id="dataUso" required />
+        <select id="prioridade" required>
+          <option value="">Selecione a prioridade</option>
+          <option value="Alta">Alta</option>
+          <option value="Média">Média</option>
+          <option value="Baixa">Baixa</option>
+        </select>
+        <details>
+          <summary>Selecionar Materiais</summary>
+          <div id="produtos" class="details-content"></div>
+        </details>
+        <button type="submit">Enviar Pedido</button>
+      </form>
+    </main>
+  </div>
+  <script src="auth.js"></script>
+</body>
+</html>
