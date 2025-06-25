@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - Sistema de Pedidos</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <h1>Sistema de Pedidos</h1>
   </header>
-
   <main class="login-container">
-    <section class="login-card">
+    <form id="login-form" onsubmit="loginUser(); return false;">
       <h2>Login de Usuário</h2>
-      <input type="email" id="email" placeholder="Seu e-mail" required>
-      <button onclick="loginUser()">Entrar</button>
-    </section>
-
-    <section class="admin-card">
-      <h3>Área do Administrador</h3>
-      <p>Apenas e-mails autorizados têm acesso.</p>
-    </section>
+      <input type="email" id="email" placeholder="Digite seu e-mail institucional" required />
+      <button type="submit">Entrar</button>
+      <div class="admin-note">
+        <h3>Área do Administrador</h3>
+        <p>Apenas e-mails autorizados têm acesso.</p>
+      </div>
+    </form>
   </main>
-
   <script src="auth.js"></script>
 </body>
 </html>
