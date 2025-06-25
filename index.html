@@ -2,22 +2,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Sistema de Pedidos</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Sistema</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <header class="header">
-      <h1>Sistema de Pedidos</h1>
+      <h2>Login de Usuário</h2>
     </header>
-    <main>
-      <form id="login-form" onsubmit="loginUser(); return false;">
-        <input type="email" id="email" placeholder="Digite seu e-mail" required />
-        <button type="submit">Entrar</button>
-      </form>
-    </main>
+    <form onsubmit="loginUser(); return false;">
+      <input type="email" id="email" placeholder="Digite seu e-mail" required />
+      <button type="submit">Entrar</button>
+    </form>
   </div>
   <script src="auth.js"></script>
 </body>

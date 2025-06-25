@@ -2,53 +2,68 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #005bea, #ff7e5f);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
+  background: url('https://faculdadececape.edu.br/wp-content/uploads/2023/11/cecape-banner.jpg') center center / cover no-repeat fixed;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-@keyframes gradientBG {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
+
 .container {
-  max-width: 960px;
-  margin: 3rem auto;
-  background: #fff;
+  width: 100%;
+  max-width: 500px;
+  background: white;
   padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .btn-sair {
   padding: 0.5rem 1rem;
   background: #f44336;
   color: white;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 4px;
   font-weight: bold;
 }
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-th, td {
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  text-align: left;
-}
-th {
-  background-color: #f0f0f0;
-}
-input, button, select {
+
+select, input, button {
   width: 100%;
   padding: 0.7rem;
   margin: 0.4rem 0;
   border-radius: 6px;
   border: 1px solid #ccc;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.2rem 0;
+}
+
+details summary {
+  cursor: pointer;
+  padding: 0.6rem;
+  background: #1e90ff;
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+details[open] summary {
+  border-bottom: 1px solid #ccc;
+}
+
+.details-content {
+  padding: 0.5rem;
+  border-radius: 4px;
+  background: #f9f9f9;
+  margin-bottom: 1rem;
 }

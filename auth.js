@@ -24,11 +24,11 @@ function carregarProdutos() {
     .then(lista => {
       const container = document.getElementById("produtos");
       if (!container) return;
-      container.innerHTML = "<p>Selecione os materiais:</p>";
+      container.innerHTML = "";
       lista.forEach(item => {
         const div = document.createElement("div");
         div.innerHTML = `
-          <label><input type="checkbox" name="produto" value="${item[0]}"> ${item[0]}</label>
+          <label><span>${item[0]}</span><input type="checkbox" name="produto" value="${item[0]}"></label>
         `;
         container.appendChild(div);
       });
@@ -45,5 +45,27 @@ function carregarUltimoPedido() {
       if (ultimos) {
         container.innerHTML = `<strong>Último pedido:</strong><br>Itens: ${ultimos[3]}<br>Status: ${ultimos[4]}`;
       }
+    });
+}
+
+function enviarPedido() {
+  const nome = document.getElementById("nome").value;
+  const setor = document.getElementById("setor").value;
+  const dataUso = new Date().toISOString();
+  const itensSelecionados = Array.from(document.querySelectorAll("input[name='produto']:checked")).map(el => el.value).join(", ");
+
+  fetch(API_URL, {
+    method: "POST",
+    body: new URLSearchParams({
+      action: "enviarPedido",
+      nome,
+      setor,
+      dataUso,
+      produtos: itensSelecionados
+    })
+  }).then(res => res.text())
+    .then(txt => {
+      alert("Pedido enviado com sucesso!");
+      location.reload();
     });
 }

@@ -10,16 +10,19 @@
 <body onload="carregarProdutos(); carregarUltimoPedido();">
   <div class="container">
     <header class="header">
-      <h1>Pedido de Material</h1>
+      <h2>Pedido de Material</h2>
       <a href="index.html" class="btn-sair">Sair</a>
     </header>
     <main>
-      <div id="ultimo-pedido" style="margin-bottom: 2rem;"></div>
-      <form id="pedido-form">
+      <div id="ultimo-pedido" style="margin-bottom: 1rem;"></div>
+      <form id="pedido-form" onsubmit="enviarPedido(); return false;">
         <input type="text" id="nome" placeholder="Seu nome" required />
         <input type="text" id="setor" placeholder="Setor" required />
         <input type="date" id="dataUso" required />
-        <div id="produtos"></div>
+        <details>
+          <summary>Selecionar Materiais</summary>
+          <div id="produtos" class="details-content"></div>
+        </details>
         <button type="submit">Enviar Pedido</button>
       </form>
     </main>
