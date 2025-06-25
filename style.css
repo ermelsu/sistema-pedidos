@@ -27,6 +27,37 @@ main {
   color: white;
   font-weight: bold;
 }
+.login-container {
+  background: white;
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+.login-container h2 {
+  margin-bottom: 1rem;
+}
+.login-container input,
+.login-container button {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+.login-container button {
+  background: #2196f3;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.admin-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
 #produtos {
   text-align: left;
   margin-top: 1rem;
