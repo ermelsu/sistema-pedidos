@@ -1,38 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Solicitação de Material</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .back-button {
+      background: transparent;
+      border: none;
+      font-size: 1rem;
+      color: #1e90ff;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      max-width: 900px;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Formulário de Pedido</h1>
+    <h1>Solicitação de Material</h1>
   </header>
 
   <main class="login-container">
-    <div class="login-card">
-      <button onclick="window.location.href='index.html'">↩ Voltar para o Login</button>
+    <div class="card">
+      <div class="top-bar">
+        <h2>Último Pedido</h2>
+        <button class="back-button" onclick="window.location.href='index.html'">↩ Sair</button>
+      </div>
+      <div id="ultimo-pedido">Carregando...</div>
+    </div>
 
+    <div class="card">
+      <h2>Novo Pedido</h2>
       <label for="nome">Nome:</label>
       <input type="text" id="nome" placeholder="Seu nome" required>
 
       <label for="setor">Setor:</label>
       <input type="text" id="setor" placeholder="Setor" required>
 
-      <label for="data">Data de uso:</label>
-      <input type="date" id="data" required>
+      <input type="hidden" id="data">
 
       <label>Selecione os materiais desejados:</label>
       <div id="produtos" style="margin-top: 1rem;"></div>
 
-      <button onclick="enviarPedido()">Enviar Pedido</button>
+      <button onclick="enviarPedido()">Enviar Novo Pedido</button>
     </div>
   </main>
 
   <script>
     const API_URL = "https://script.google.com/a/macros/faculdadececape.edu.br/s/AKfycbzgQyknBpnzz7X-sdVpg2nc6_b_zJRouENAJx-XgKR2VmLnzdy_cO_VTfPXsSJKE2XtQg/exec";
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const nomeUsuario = urlParams.get("nome");
 
     function carregarProdutos() {
       fetch(`${API_URL}?action=getProdutos`, { method: 'POST' })
@@ -46,20 +80,35 @@
             div.innerHTML = `<label><input type='checkbox' value='${item[0]}'> 🍀 ${item[0]}</label>`;
             container.appendChild(div);
           });
-        })
-        .catch(() => {
-          document.getElementById('produtos').innerHTML = '<p style="color:red">Erro ao carregar produtos.</p>';
+        });
+    }
+
+    function carregarUltimoPedido() {
+      fetch(`${API_URL}?action=listarPedidos`, { method: 'POST' })
+        .then(res => res.text())
+        .then(json => {
+          const pedidos = JSON.parse(json).reverse();
+          const ultimo = pedidos.find(p => p[0] === nomeUsuario);
+          const el = document.getElementById("ultimo-pedido");
+          if (ultimo) {
+            el.innerHTML = `<p><strong>Setor:</strong> ${ultimo[1]}<br>
+                            <strong>Data:</strong> ${new Date(ultimo[2]).toLocaleString('pt-BR')}<br>
+                            <strong>Itens:</strong> ${ultimo[3]}<br>
+                            <strong>Status:</strong> ${ultimo[4]}</p>`;
+          } else {
+            el.innerHTML = "<p>Nenhum pedido encontrado.</p>";
+          }
         });
     }
 
     function enviarPedido() {
       const nome = document.getElementById('nome').value;
       const setor = document.getElementById('setor').value;
-      const data = document.getElementById('data').value;
+      const data = new Date().toISOString();
       const selecionados = [...document.querySelectorAll('#produtos input:checked')].map(e => e.value);
       const itens = selecionados.join(', ');
 
-      if (!nome || !setor || !data || selecionados.length === 0) {
+      if (!nome || !setor || selecionados.length === 0) {
         alert('Preencha todos os campos e selecione ao menos um item.');
         return;
       }
@@ -73,7 +122,8 @@
         .then(res => res.text())
         .then(r => {
           if (r === 'sucesso') {
-            window.location.href = `status.html?nome=${encodeURIComponent(nome)}`;
+            alert("Pedido enviado com sucesso!");
+            location.reload();
           } else {
             alert('Erro ao enviar pedido.');
           }
@@ -81,6 +131,7 @@
     }
 
     carregarProdutos();
+    carregarUltimoPedido();
   </script>
 </body>
 </html>
