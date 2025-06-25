@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitação de Material</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Formulário de Pedido</h1>
+  </header>
+
+  <main class="login-container">
+    <div class="login-card">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" placeholder="Seu nome" required>
+
+      <label for="setor">Setor:</label>
+      <input type="text" id="setor" placeholder="Setor" required>
+
+      <label for="data">Data de uso:</label>
+      <input type="date" id="data" required>
+
+      <label for="itens">Itens solicitados:</label>
+      <textarea id="itens" placeholder="Ex: 2x Papel A4, 1x Caneta azul" rows="4" required></textarea>
+
+      <button onclick="enviarPedido()">Enviar Pedido</button>
+    </div>
+  </main>
+
+  <script>
+    const API_URL = "https://script.google.com/a/macros/faculdadececape.edu.br/s/AKfycbzgQyknBpnzz7X-sdVpg2nc6_b_zJRouENAJx-XgKR2VmLnzdy_cO_VTfPXsSJKE2XtQg/exec";
+    function enviarPedido() {
+      const nome = document.getElementById('nome').value;
+      const setor = document.getElementById('setor').value;
+      const data = document.getElementById('data').value;
+      const itens = document.getElementById('itens').value;
+
+      if (!nome || !setor || !data || !itens) {
+        alert('Preencha todos os campos');
+        return;
+      }
+
+      const params = new URLSearchParams({
+        action: 'enviarPedido',
+        nome, setor, data, itens
+      });
+
+      fetch(`${API_URL}?${params.toString()}`, { method: 'POST' })
+        .then(res => res.text())
+        .then(r => {
+          if (r === 'sucesso') {
+            alert('Pedido enviado com sucesso!');
+            window.location.reload();
+          } else {
+            alert('Erro ao enviar pedido.');
+          }
+        });
+    }
+  </script>
+</body>
+</html>

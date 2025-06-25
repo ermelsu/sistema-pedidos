@@ -1,17 +1,16 @@
+const API_URL = "https://script.google.com/a/macros/faculdadececape.edu.br/s/AKfycbzgQyknBpnzz7X-sdVpg2nc6_b_zJRouENAJx-XgKR2VmLnzdy_cO_VTfPXsSJKE2XtQg/exec";
 
 function loginUser() {
-  const email = document.getElementById('email').value.trim().toLowerCase();
-  if (!email) {
-    alert('Digite um e-mail válido');
-    return;
-  }
-
-  // Simulação (substituir com chamada à API do Google Apps Script)
-  if (email === 'admin@email.com') {
-    window.location.href = 'admin.html';
-  } else if (email === 'usuario@email.com') {
-    window.location.href = 'user.html';
-  } else {
-    alert('E-mail não autorizado.');
-  }
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  fetch(`${API_URL}?action=login&email=${encodeURIComponent(email)}`, { method: "POST" })
+    .then(res => res.text())
+    .then(tipo => {
+      if (tipo === "usuario") {
+        window.location.href = "user.html";
+      } else if (tipo === "admin") {
+        window.location.href = "admin.html";
+      } else {
+        alert("E-mail não autorizado.");
+      }
+    });
 }
