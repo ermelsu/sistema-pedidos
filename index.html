@@ -1,21 +1,20 @@
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - Sistema</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Pedidos - Login</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-      <h2>Login de Usuário</h2>
-    </header>
-    <form onsubmit="loginUser(); return false;">
-      <input type="email" id="email" placeholder="Digite seu e-mail" required />
-      <button type="submit">Entrar</button>
-    </form>
+  <div class="logo-cecape">
+    <img src="https://faculdadececape.edu.br/img/logo.png" alt="Logo CECAPE" />
+  </div>
+  <div class="login-container">
+    <h1 class="login-title">Login de Usuário</h1>
+    <input type="email" id="email" placeholder="Digite seu e-mail" required />
+    <input type="password" id="senha" placeholder="Digite sua senha" required />
+    <button onclick="loginUser()">Entrar</button>
   </div>
   <script src="auth.js"></script>
 </body>
